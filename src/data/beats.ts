@@ -1,6 +1,28 @@
 export const BEATS = [
   {
     id: 1,
+    title: 'Synthetic Tears',
+    artist: 'Weeknd Type Beat',
+    genre: 'Electronic',
+    bpm: 85,
+    key: 'Bbm',
+    duration: '3:02',
+    src: 'https://cdn.hillsmckay.art/audio/Project3.mp3',
+    img: 'https://cdn.hillsmckay.art/img/beat13.webp',
+  },
+  {
+    id: 2,
+    title: 'Dawn In The Abyss',
+    artist: 'Weeknd Type Beat',
+    genre: 'Electronic',
+    bpm: 101,
+    key: 'Cm',
+    duration: '2:58',
+    src: 'https://cdn.hillsmckay.art/audio/Project4.mp3',
+    img: 'https://cdn.hillsmckay.art/img/beat14.webp',
+  },
+  {
+    id: 3,
     title: 'Dissolve',
     artist: 'Weeknd Type Beat',
     genre: 'Melancholic',
@@ -11,7 +33,7 @@ export const BEATS = [
     img: 'https://cdn.hillsmckay.art/img/beat11.webp',
   },
   {
-    id: 2,
+    id: 4,
     title: 'Toxic Glitter',
     artist: 'Britney Spears Type Beat',
     genre: '2000s Swag',
@@ -22,7 +44,7 @@ export const BEATS = [
     img: 'https://cdn.hillsmckay.art/img/beat1.webp',
   },
   {
-    id: 3,
+    id: 5,
     title: 'Like I Used To',
     artist: 'Justin Timberlake Type Beat',
     genre: '2000s Swag',
@@ -33,7 +55,7 @@ export const BEATS = [
     img: 'https://cdn.hillsmckay.art/img/beat2.webp',
   },
   {
-    id: 4,
+    id: 6,
     title: 'Cracked Pavement',
     artist: 'Nas Type Beat',
     genre: 'Boom Bap',
@@ -44,7 +66,7 @@ export const BEATS = [
     img: 'https://cdn.hillsmckay.art/img/beat3.webp',
   },
   {
-    id: 5,
+    id: 7,
     title: 'Chrome Lights',
     artist: 'Lady Gaga Type Beat',
     genre: 'Electronic',
@@ -55,7 +77,7 @@ export const BEATS = [
     img: 'https://cdn.hillsmckay.art/img/beat4.webp',
   },
   {
-    id: 6,
+    id: 8,
     title: 'Signal Loss',
     artist: 'Labrinth Type Beat',
     genre: 'Atmospheric',
@@ -66,7 +88,7 @@ export const BEATS = [
     img: 'https://cdn.hillsmckay.art/img/beat5.webp',
   },
   {
-    id: 7,
+    id: 9,
     title: 'Weight of Light',
     artist: 'Labrinth Type Beat',
     genre: 'Atmospheric',
@@ -77,7 +99,7 @@ export const BEATS = [
     img: 'https://cdn.hillsmckay.art/img/beat12.webp',
   },
   {
-    id: 8,
+    id: 10,
     title: 'Last Known Position',
     artist: 'Labrinth Type Beat',
     genre: 'Cinematic',
@@ -88,7 +110,7 @@ export const BEATS = [
     img: 'https://cdn.hillsmckay.art/img/beat7.webp',
   },
   {
-    id: 9,
+    id: 11,
     title: 'Noche Dura',
     artist: 'Bad Bunny Type Beat',
     genre: 'Reggaeton',
@@ -99,7 +121,7 @@ export const BEATS = [
     img: 'https://cdn.hillsmckay.art/img/beat8.webp',
   },
   {
-    id: 10,
+    id: 12,
     title: 'Static Cathedral',
     artist: 'Kanye West Type Beat',
     genre: 'Experimental',
@@ -110,7 +132,7 @@ export const BEATS = [
     img: 'https://cdn.hillsmckay.art/img/beat6.webp',
   },
   {
-    id: 11,
+    id: 13,
     title: 'Bleed Out Slow',
     artist: 'Weeknd Type Beat',
     genre: 'Melancholic',
@@ -137,7 +159,6 @@ export const BEAT_ARTISTS = [
   'Weeknd Type Beat',
   'Britney Spears Type Beat',
   'Justin Timberlake Type Beat',
-  'Nas Type Beat',
   'Lady Gaga Type Beat',
   'Labrinth Type Beat',
   'Bad Bunny Type Beat',
