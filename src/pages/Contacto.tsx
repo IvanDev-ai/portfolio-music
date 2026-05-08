@@ -231,11 +231,11 @@ export default function Contacto({ theme = 'light' }: { theme?: 'dark' | 'light'
             <div style={{ fontSize: '9px', letterSpacing: '0.18em', color: DIM, marginBottom: '16px' }}>
               OR REACH DIRECTLY
             </div>
-            <a href="mailto:contact@hillsmckay.com" style={{
+            <a href="mailto:hillsmckay.contact@gmail.com" style={{
               display: 'block', fontSize: '14px', fontWeight: 600,
               color: BOLD, marginBottom: '6px', textDecoration: 'none',
             }}>
-              contact@hillsmckay.com
+              hillsmckay.contact@gmail.com
             </a>
             <span style={{ fontSize: '12px', color: DIM }}>Response within 48h.</span>
           </div>
@@ -291,7 +291,7 @@ export default function Contacto({ theme = 'light' }: { theme?: 'dark' | 'light'
               <div style={{ fontSize: '9px', letterSpacing: '0.18em', color: DIM, marginBottom: '12px' }}>
                 DIRECT
               </div>
-              <a href="mailto:contact@hillsmckay.com" style={{
+              <a href="mailto:hillsmckay.contact@gmail.com" style={{
                 display: 'block', fontSize: '16px', fontWeight: 600,
                 color: BOLD, marginBottom: '6px', textDecoration: 'none',
                 transition: 'opacity 0.15s',
@@ -299,7 +299,7 @@ export default function Contacto({ theme = 'light' }: { theme?: 'dark' | 'light'
                 onMouseEnter={e => (e.currentTarget.style.opacity = '0.6')}
                 onMouseLeave={e => (e.currentTarget.style.opacity = '1')}
               >
-                contact@hillsmckay.com
+                hillsmckay.contact@gmail.com
               </a>
               <span style={{ fontSize: '12px', color: DIM }}>Response within 48h. I read everything.</span>
             </div>
@@ -327,7 +327,7 @@ export default function Contacto({ theme = 'light' }: { theme?: 'dark' | 'light'
           </div>
 
           <div style={{ fontSize: '10px', color: DIM, letterSpacing: '0.06em' }}>
-            © 2024 HILLS-McKAY · SOUND ARCHITECTURE
+            © 2026 HILLS-McKAY · SOUND ARCHITECTURE
           </div>
         </div>
 

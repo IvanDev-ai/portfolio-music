@@ -3,9 +3,9 @@ import { useNavigate, useLocation } from 'react-router-dom'
 
 const NAV_LINKS = [
   { label: 'MAIN', path: '/' },
+  { label: 'SCENES', path: '/cine' },
   { label: 'BEATS', path: '/beats' },
-  { label: 'CINE', path: '/cine' },
-  { label: 'CONTACTO', path: '/contacto' },
+  { label: 'CONTACT', path: '/contacto' },
   { label: 'WHO AM I', path: '/whoami' },
 ]
 
@@ -42,7 +42,7 @@ export default function Nav({
 
   const textColor = isMain || isSceneDetail
   ? 'rgba(255,255,255,0.75)'
-  : isBeatDetail ? 'rgb(255, 255, 255)'  // blanco sobre el fondo oscuro del detail
+  : isBeatDetail ? 'rgb(255, 255, 255)'  
   : isLight ? 'rgba(0,0,0,0.85)' : 'rgba(255,255,255,0.85)'
   const dimColor = isMain
     ? 'rgba(255,255,255,0.45)'
@@ -61,13 +61,13 @@ export default function Nav({
   const reset = useCallback(() => {
     setVisible(true)
     if (timer.current) clearTimeout(timer.current)
-    if (isMain) timer.current = setTimeout(() => setVisible(false), 6000)
+    if (isMain) timer.current = setTimeout(() => setVisible(false), 2000)
   }, [isMain])
 
   useEffect(() => {
     setVisible(true)
     if (timer.current) clearTimeout(timer.current)
-    if (isMain) timer.current = setTimeout(() => setVisible(false), 6000)
+    if (isMain) timer.current = setTimeout(() => setVisible(false), 2000)
   }, [isMain])
 
   useEffect(() => {
@@ -134,7 +134,7 @@ export default function Nav({
             fontWeight: 500, fontSize: '12px',
             letterSpacing: '0.02em', color: textColor, cursor: 'pointer',
           }}>
-            NATE MONTANA
+            HILLS-MCKAY
           </span>
 
           {/* MENU BUTTON — derecha */}
@@ -238,7 +238,7 @@ export default function Nav({
   letterSpacing: '0.02em', color: textColor, cursor: 'pointer',
   flexShrink: 0,
 }}>
-  NATE MONTANA
+  HILLS-MCKAY
 </span>
 
 {/* COL 2 — CENTRO en main: pill. En otras: frase centrada */}

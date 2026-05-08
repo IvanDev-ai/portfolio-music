@@ -75,3 +75,35 @@ export const SCENES = [
 
 export const SCENE_CATEGORIES = ['Series', 'Films', 'Independant Films', 'Trailer', 'Multiple Scenes', 'Commercial', 'AI Generated Visuals']
 export const SCENE_MOODS = ['Atmospheric', 'Euphoric', 'Cinematic', 'Emotional', 'Dramatic']
+
+export const SIDEBAR_ITEMS = [
+  {
+    group: 'LIBRARY',
+    items: [
+      { icon: '▦', label: 'All' },
+      { icon: '⊞', label: 'Recently Added' },
+    ],
+  },
+  {
+    group: 'CATEGORY',
+    items: [
+      { icon: '◈', label: SCENE_CATEGORIES[0] },
+      { icon: '▶', label: SCENE_CATEGORIES[1] },
+      { icon: '◉', label: SCENE_CATEGORIES[2] },
+      { icon: '▷', label: SCENE_CATEGORIES[3] },
+      { icon: '⊟', label: SCENE_CATEGORIES[4] },
+      { icon: '◻', label: SCENE_CATEGORIES[5] },
+      { icon: '✦', label: SCENE_CATEGORIES[6] },
+    ],
+  },
+  {
+    group: 'MOOD',
+    items: [
+      { icon: '◐', label: SCENE_MOODS[0] },
+      { icon: '◑', label: SCENE_MOODS[1] },
+      { icon: '◒', label: SCENE_MOODS[2] },
+      { icon: '◓', label: SCENE_MOODS[3] },
+      { icon: '◔', label: SCENE_MOODS[4] },
+    ],
+  },
+]

@@ -41,6 +41,7 @@ export default function BeatCategory({ theme = 'light' }: { theme?: 'dark' | 'li
     return true
   })
 
+  const displayedBeats = [...beats].sort((a, b) => b.id - a.id)
   const toggleDrop = (name: string) =>
     setOpenDrop(o => o === name ? null : name)
 
@@ -176,7 +177,7 @@ export default function BeatCategory({ theme = 'light' }: { theme?: 'dark' | 'li
         gap: isMobile ? '12px' : '24px',
         padding: isMobile ? '20px 16px 80px' : '24px 32px 80px',
       }}>
-        {beats.map(beat => (
+        {displayedBeats.map(beat => (
           <BeatCard
             key={beat.id}
             beat={beat}

@@ -1,8 +1,7 @@
 import { useState, useRef, useEffect, useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { SCENES, SCENE_CATEGORIES, SCENE_MOODS } from '../data/scenes'
+import { SCENES, SCENE_CATEGORIES, SCENE_MOODS, SIDEBAR_ITEMS } from '../data/scenes'
 import { useDragScroll } from '../hooks/useDragScroll'
-
 const FEATURED = SCENES.filter(s => s.featured)
 
 export default function Cine({ theme = 'light' }: { theme?: 'dark' | 'light' }) {
@@ -122,37 +121,7 @@ export default function Cine({ theme = 'light' }: { theme?: 'dark' | 'light' }) 
 
   const content = getContent()
 
-  const SIDEBAR_ITEMS = [
-    {
-      group: 'LIBRARY',
-      items: [
-        { icon: '▦', label: 'All' },
-        { icon: '⊞', label: 'Recently Added' },
-      ]
-    },
-    {
-      group: 'CATEGORY',
-      items: [
-        { icon: '◈', label: 'Series' },
-        { icon: '▶', label: 'Films' },
-        { icon: '◉', label: 'Independant Films' },
-        { icon: '▷', label: 'Trailer' },
-        { icon: '⊟', label: 'Multiple Scenes' },
-        { icon: '◻', label: 'Commercial' },
-        { icon: '✦', label: 'AI Generated Visuals' },
-      ]
-    },
-    {
-      group: 'MOOD',
-      items: [
-        { icon: '◐', label: 'Dark' },
-        { icon: '◑', label: 'Euphoric' },
-        { icon: '◒', label: 'Tense' },
-        { icon: '◓', label: 'Cinematic' },
-        { icon: '◔', label: 'Emotional' },
-      ]
-    },
-  ]
+
 
   if (isMobile) {
     return (
@@ -404,14 +373,19 @@ function SceneRow({ label, scenes, navigate, TEXT, DIM }: {
   const [hoveredId, setHoveredId] = useState<number | null>(null)
   const isAI = label === 'AI Generated Visuals'
 
+  // ←←← Aquí invertimos el orden (última a primera)
+  const reversedScenes = [...scenes].reverse()
+
   return (
     <div style={{ marginBottom: '48px' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
         <span style={{ fontSize: '11px', fontWeight: 600, letterSpacing: '0.1em', color: DIM }}>· {label}</span>
-        <button onClick={() => navigate(`/cine/category/${encodeURIComponent(label)}`)}
+        <button 
+          onClick={() => navigate(`/cine/category/${encodeURIComponent(label)}`)}
           style={{ fontSize: '10px', color: DIM, transition: 'color 0.15s' }}
           onMouseEnter={e => (e.currentTarget.style.color = TEXT)}
-          onMouseLeave={e => (e.currentTarget.style.color = DIM)}>
+          onMouseLeave={e => (e.currentTarget.style.color = DIM)}
+        >
           See all →
         </button>
       </div>
@@ -422,7 +396,8 @@ function SceneRow({ label, scenes, navigate, TEXT, DIM }: {
           padding: '10px 14px',
           background: 'rgba(200,0,42,0.06)',
           border: '1px solid rgba(200,0,42,0.15)',
-          borderRadius: '6px', marginBottom: '14px',
+          borderRadius: '6px', 
+          marginBottom: '14px',
         }}>
           <span style={{ fontSize: '12px', flexShrink: 0 }}>✦</span>
           <span style={{ fontSize: '11px', color: DIM, lineHeight: 1.6 }}>
@@ -431,27 +406,62 @@ function SceneRow({ label, scenes, navigate, TEXT, DIM }: {
         </div>
       )}
 
-      <div ref={ref} style={{ display: 'flex', gap: '12px', overflowX: 'auto', scrollbarWidth: 'none', userSelect: 'none' } as React.CSSProperties}>
-        {scenes.map(scene => (
-          <div key={scene.id}
+      <div 
+        ref={ref} 
+        style={{ 
+          display: 'flex', 
+          gap: '12px', 
+          overflowX: 'auto', 
+          scrollbarWidth: 'none', 
+          userSelect: 'none' 
+        } as React.CSSProperties}
+      >
+        {reversedScenes.map(scene => (
+          <div 
+            key={scene.id}
             onClick={() => { if (!wasDragged()) navigate(`/cine/${scene.id}`) }}
             onMouseEnter={() => setHoveredId(scene.id)}
             onMouseLeave={() => setHoveredId(null)}
             style={{ flexShrink: 0, width: '160px', cursor: 'pointer' }}
           >
-            <div style={{ width: '100%', aspectRatio: '9/16', borderRadius: '6px', overflow: 'hidden', marginBottom: '10px' }}>
-              <img src={scene.img} alt={scene.title} draggable={false} style={{
-                width: '100%', height: '100%', objectFit: 'cover', display: 'block',
-                transition: 'transform 0.5s ease, filter 0.3s ease',
-                transform: hoveredId === scene.id ? 'scale(1.04)' : 'scale(1)',
-                filter: hoveredId === scene.id ? 'brightness(0.7)' : 'brightness(0.9)',
-                pointerEvents: 'none',
-              }} />
+            <div style={{ 
+              width: '100%', 
+              aspectRatio: '9/16', 
+              borderRadius: '6px', 
+              overflow: 'hidden', 
+              marginBottom: '10px' 
+            }}>
+              <img 
+                src={scene.img} 
+                alt={scene.title} 
+                draggable={false} 
+                style={{
+                  width: '100%', 
+                  height: '100%', 
+                  objectFit: 'cover', 
+                  display: 'block',
+                  transition: 'transform 0.5s ease, filter 0.3s ease',
+                  transform: hoveredId === scene.id ? 'scale(1.04)' : 'scale(1)',
+                  filter: hoveredId === scene.id ? 'brightness(0.7)' : 'brightness(0.9)',
+                  pointerEvents: 'none',
+                }} 
+              />
             </div>
-            <div style={{ fontSize: '12px', fontWeight: 500, color: TEXT, marginBottom: '3px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{scene.title}</div>
+            <div style={{ 
+              fontSize: '12px', 
+              fontWeight: 500, 
+              color: TEXT, 
+              marginBottom: '3px', 
+              whiteSpace: 'nowrap', 
+              overflow: 'hidden', 
+              textOverflow: 'ellipsis' 
+            }}>
+              {scene.title}
+            </div>
             <div style={{ fontSize: '10px', color: DIM }}>{scene.type}</div>
           </div>
         ))}
+        
         <div style={{ flexShrink: 0, width: '8px' }} />
       </div>
     </div>

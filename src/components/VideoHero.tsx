@@ -47,7 +47,7 @@ export default function VideoHero({ videoRef, muted, paused, onProgressChange, p
   const resetTimer = useCallback(() => {
     setHudVisible(true)
     if (hideTimer.current) clearTimeout(hideTimer.current)
-    hideTimer.current = setTimeout(() => setHudVisible(false), 6000)
+    hideTimer.current = setTimeout(() => setHudVisible(false), 2000)
   }, [])
 
   useEffect(() => {

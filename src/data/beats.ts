@@ -74,7 +74,7 @@ export const BEATS = [
     key: 'G',
     duration: '2:43',
     src: 'https://www.hillsmckay.art/audio/Project17.mp3',
-    img: 'https://www.hillsmckay.art/img/beat5.webp',
+    img: 'https://www.hillsmckay.art/img/beat12.webp',
   },
   {
     id: 8,
@@ -107,7 +107,7 @@ export const BEATS = [
     key: 'F#',
     duration: '3:00',
     src: 'https://www.hillsmckay.art/audio/Project20.mp3',
-    img: 'https://www.hillsmckay.art/img/beat9.webp',
+    img: 'https://www.hillsmckay.art/img/beat6.webp',
   },
   {
     id: 11,

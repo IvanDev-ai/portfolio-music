@@ -43,8 +43,8 @@ export default function WhoAmI({ theme = 'light' }: { theme?: 'dark' | 'light' }
 
           {/* CONTACT */}
           <div style={{ marginBottom: '40px' }}>
-            <a href="mailto:contact@hillsmckay.com" style={{ display: 'block', fontSize: '14px', fontWeight: 700, color: BOLD, marginBottom: '6px' }}>
-              contact@hillsmckay.com
+            <a href="mailto:hillsmckay.contact@gmail.com" style={{ display: 'block', fontSize: '14px', fontWeight: 700, color: BOLD, marginBottom: '6px' }}>
+              hillsmckay.contact@gmail.com
             </a>
             <span style={{ fontSize: '13px', color: DIM }}>@hillsmckay</span>
           </div>
@@ -135,7 +135,7 @@ export default function WhoAmI({ theme = 'light' }: { theme?: 'dark' | 'light' }
             <div style={{ fontSize: '9px', letterSpacing: '0.2em', color: DIM, marginBottom: '16px' }}>
               · CONTACT
             </div>
-            <a href="mailto:contact@hillsmckay.com" style={{
+            <a href="mailto:hillsmckay.contact@gmail.com" style={{
               display: 'block', fontSize: '13px',
               fontWeight: 700, color: BOLD, marginBottom: '6px',
               textDecoration: 'none',
@@ -144,9 +144,8 @@ export default function WhoAmI({ theme = 'light' }: { theme?: 'dark' | 'light' }
               onMouseEnter={e => (e.currentTarget.style.opacity = '0.6')}
               onMouseLeave={e => (e.currentTarget.style.opacity = '1')}
             >
-              contact@hillsmckay.com
+              hillsmckay.contact@gmail.com
             </a>
-            <span style={{ fontSize: '12px', color: DIM }}>@hillsmckay</span>
           </div>
 
           {/* RIGHT INFO — services */}
@@ -170,7 +169,7 @@ export default function WhoAmI({ theme = 'light' }: { theme?: 'dark' | 'light' }
           borderTop: `1px solid ${isLight ? 'rgba(0,0,0,0.07)' : 'rgba(255,255,255,0.07)'}`,
         }}>
           <span style={{ fontSize: '10px', color: DIM, letterSpacing: '0.06em' }}>
-            © 2024 HILLS-McKAY
+            © 2026 HILLS-McKAY
           </span>
           <button
             onClick={() => navigate('/contacto')}

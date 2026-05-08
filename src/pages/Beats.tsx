@@ -3,15 +3,27 @@ import { useNavigate } from 'react-router-dom'
 import { useDragScroll } from '../hooks/useDragScroll'
 import { BEATS, BEAT_GENRES } from '../data/beats'
 
+const getLatestBeats = (beats: typeof BEATS, limit = 5) => {
+  return [...beats]
+    .sort((a, b) => b.id - a.id)   // ← Orden descendente por ID (más nuevo primero)
+    .slice(0, limit)
+}
+
 const SECTIONS = [
-  { label: 'ALL', genre: 'ALL', beats: BEATS.slice(0, 5) },
+  { 
+    label: 'ALL', 
+    genre: 'ALL', 
+    beats: getLatestBeats(BEATS, 5) 
+  },
   ...BEAT_GENRES.map(genre => ({
     label: genre.toUpperCase(),
     genre,
-    beats: BEATS.filter(b => b.genre === genre).slice(0, 5),
+    beats: getLatestBeats(
+      BEATS.filter(b => b.genre === genre), 
+      5
+    ),
   })).filter(s => s.beats.length > 0),
 ]
-
 
 export default function Beats({ theme = 'dark' }: { theme?: 'dark' | 'light' }) {
   const [hoveredId, setHoveredId] = useState<number | null>(null)

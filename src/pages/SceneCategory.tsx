@@ -1,9 +1,6 @@
 import { useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
-import { SCENES, SCENE_CATEGORIES } from '../data/scenes'
-
-const ALL_TYPES = ['Orchestral', 'Epic', 'Ambient', 'Alt RnB', 'Synth Pop', 'Dark Ambient']
-const ALL_MOODS = ['Atmospheric', 'Euphoric', 'Tense', 'Cinematic', 'Emotional']
+import { SCENES, SCENE_CATEGORIES, SCENE_MOODS } from '../data/scenes'
 
 export default function SceneCategory({ theme = 'light' }: { theme?: 'dark' | 'light' }) {
   const { cat } = useParams()
@@ -19,18 +16,19 @@ export default function SceneCategory({ theme = 'light' }: { theme?: 'dark' | 'l
   const BORDER = isLight ? 'rgba(0,0,0,0.08)' : 'rgba(255,255,255,0.08)'
 
   const [filterCategory, setFilterCategory] = useState('ALL')
-  const [filterType, setFilterType] = useState('ALL')
   const [filterMood, setFilterMood] = useState('ALL')
   const [openDrop, setOpenDrop] = useState<string | null>(null)
   const [mobileCols, setMobileCols] = useState(1)
   const [hoveredId, setHoveredId] = useState<number | null>(null)
-
+  
   const scenes = SCENES.filter(s => {
     if (!isAll && s.category !== label) return false
     if (isAll && filterCategory !== 'ALL' && s.category !== filterCategory) return false
-    if (filterType !== 'ALL' && !s.type.includes(filterType)) return false
+    if (filterMood !== 'ALL' && s.mood !== filterMood) return false
     return true
   })
+
+  const displayedScenes = [...scenes].reverse()
 
   const toggleDrop = (name: string) => setOpenDrop(o => o === name ? null : name)
   const cols = isMobile ? mobileCols : 4
@@ -109,18 +107,9 @@ export default function SceneCategory({ theme = 'light' }: { theme?: 'dark' | 'l
             TEXT={TEXT} DIM={DIM} isLight={isLight}
           />
           <Dropdown
-            label="Type"
-            value={filterType}
-            options={['ALL', ...ALL_TYPES]}
-            isOpen={openDrop === 'type'}
-            onToggle={() => toggleDrop('type')}
-            onSelect={v => { setFilterType(v); setOpenDrop(null) }}
-            TEXT={TEXT} DIM={DIM} isLight={isLight}
-          />
-          <Dropdown
             label="Mood"
             value={filterMood}
-            options={['ALL', ...ALL_MOODS]}
+            options={['ALL', ...SCENE_MOODS]}
             isOpen={openDrop === 'mood'}
             onToggle={() => toggleDrop('mood')}
             onSelect={v => { setFilterMood(v); setOpenDrop(null) }}
@@ -152,7 +141,7 @@ export default function SceneCategory({ theme = 'light' }: { theme?: 'dark' | 'l
         gap: isMobile ? '12px' : '20px',
         padding: isMobile ? '20px 16px 80px' : '24px 32px 80px',
       }}>
-        {scenes.map(scene => (
+        {displayedScenes.map(scene => (
           <div
             key={scene.id}
             onClick={() => navigate(`/cine/${scene.id}`)}
