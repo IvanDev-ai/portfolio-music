@@ -425,7 +425,7 @@ export default function BeatDetail() {
           <span>-{remainMin}:{remainSec}</span>
         </div>
 
-        {/* CONTROLES — estilo Apple Music sin círculo */}
+        {/* CONTROLES */}
         <div style={{
           display: 'flex', alignItems: 'center',
           justifyContent: 'center', gap: '40px',
@@ -480,17 +480,60 @@ export default function BeatDetail() {
         {/* VOLUMEN */}
         <div style={{
           width: '100%', display: 'flex',
-          alignItems: 'center', gap: '10px',
+          alignItems: 'center', gap: '12px',
         }}>
-          <button onClick={toggleMute} style={{ color: 'rgba(255,255,255,0.4)', fontSize: '13px' }}>
-            {muted || volume === 0 ? '🔇' : volume < 0.5 ? '🔉' : '🔊'}
+          {/* ICONO MUTE */}
+          <button
+            onClick={toggleMute}
+            style={{ color: 'rgba(255,255,255,0.4)', transition: 'color 0.15s', display: 'flex', alignItems: 'center', flexShrink: 0 }}
+            onMouseEnter={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.8)')}
+            onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.4)')}
+          >
+            {muted || volume === 0 ? (
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M16.5 12A4.5 4.5 0 0014 7.97v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06a8.99 8.99 0 003.69-2L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/>
+              </svg>
+            ) : volume < 0.5 ? (
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0014 7.97v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/>
+              </svg>
+            ) : (
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0014 7.97v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+              </svg>
+            )}
           </button>
-          <input
-            type="range" min={0} max={1} step={0.01}
-            value={muted ? 0 : volume}
-            onChange={e => handleVolume(parseFloat(e.target.value))}
-            style={{ flex: 1, accentColor: 'rgba(255,255,255,0.8)', cursor: 'pointer' }}
-          />
+
+          {/* BARRA CUSTOM */}
+          <div style={{ flex: 1, position: 'relative', height: '3px' }}>
+            <div style={{
+              position: 'absolute', inset: 0,
+              background: 'rgba(255,255,255,0.15)',
+              borderRadius: '2px',
+            }} />
+            <div style={{
+              position: 'absolute', top: 0, left: 0, height: '100%',
+              width: `${(muted ? 0 : volume) * 100}%`,
+              background: 'rgba(255,255,255,0.75)',
+              borderRadius: '2px',
+              transition: 'width 0.1s',
+            }} />
+            <input
+              type="range" min={0} max={1} step={0.01}
+              value={muted ? 0 : volume}
+              onChange={e => handleVolume(parseFloat(e.target.value))}
+              style={{
+                position: 'absolute', inset: 0,
+                width: '100%', height: '100%',
+                opacity: 0, cursor: 'pointer', margin: 0,
+              }}
+            />
+          </div>
+
+          {/* ICONO MAX */}
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="rgba(255,255,255,0.25)" style={{ flexShrink: 0 }}>
+            <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0014 7.97v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+          </svg>
         </div>
 
         {/* METADATA */}

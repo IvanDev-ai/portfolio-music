@@ -148,6 +148,12 @@ export default function VideoHero({ videoRef, muted, paused, onProgressChange, p
           key={project.src}
           src={project.src}
           autoPlay loop muted={muted} playsInline
+          onTimeUpdate={() => {
+            const video = videoRef.current
+            if (video && video.duration && !isNaN(video.duration)) {
+              onProgressChange(video.currentTime / video.duration)
+            }
+          }}
           style={{
             position: 'absolute', inset: 0,
             width: '100%', height: '100%', objectFit: 'cover',
@@ -233,6 +239,12 @@ export default function VideoHero({ videoRef, muted, paused, onProgressChange, p
 
       <video ref={videoRef} key={project.src} src={project.src}
         autoPlay loop muted={muted} playsInline
+        onTimeUpdate={() => {
+          const video = videoRef.current
+          if (video && video.duration && !isNaN(video.duration)) {
+            onProgressChange(video.currentTime / video.duration)
+          }
+        }}
         style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }}
       />
 

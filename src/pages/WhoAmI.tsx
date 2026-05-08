@@ -203,11 +203,11 @@ export default function WhoAmI({ theme = 'light' }: { theme?: 'dark' | 'light' }
         height: '100%',
       }}>
         <img
-          src="/assets/img/whoami.jpg"
+          src="https://cdn.hillsmckay.art/img/whoami.webp"
           alt="Hills-McKay"
           style={{
-            position: 'absolute', inset: 0,
-            width: '100%', height: '100%',
+            position: 'absolute', inset: 30,
+            width: '90%', height: '90%',
             objectFit: 'cover', objectPosition: 'center top',
             filter: isLight ? 'none' : 'brightness(0.8)',
           }}
