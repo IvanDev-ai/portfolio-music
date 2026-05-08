@@ -70,7 +70,7 @@ function AppContent() {
         volume={volume}
         onVolumeChange={handleVolume}
         isMobile={isMobile}
-        theme={theme}  // <- FALTABA ESTO
+        theme={theme}  
         onThemeToggle={() => setTheme(t => t === 'dark' ? 'light' : 'dark')}
       />
       <Routes>

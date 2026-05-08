@@ -21,7 +21,7 @@ export default function WhoAmI({ theme = 'light' }: { theme?: 'dark' | 'light' }
         {/* IMAGEN ARRIBA */}
         <div style={{ width: '100%', aspectRatio: '3/4', overflow: 'hidden' }}>
           <img
-            src="https://www.hillsmckay.art/img/whoami.webp"
+            src="https://cdn.hillsmckay.art/img/whoami.webp"
             alt="Hills-McKay"
             style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', filter: isLight ? 'none' : 'brightness(0.85)' }}
           />
