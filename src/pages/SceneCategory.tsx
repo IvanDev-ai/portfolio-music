@@ -21,7 +21,6 @@ export default function SceneCategory({ theme = 'light' }: { theme?: 'dark' | 'l
   const [filterCategory, setFilterCategory] = useState('ALL')
   const [filterType, setFilterType] = useState('ALL')
   const [filterMood, setFilterMood] = useState('ALL')
-  const [filterFormat, setFilterFormat] = useState('ALL')
   const [openDrop, setOpenDrop] = useState<string | null>(null)
   const [mobileCols, setMobileCols] = useState(1)
   const [hoveredId, setHoveredId] = useState<number | null>(null)
@@ -125,15 +124,6 @@ export default function SceneCategory({ theme = 'light' }: { theme?: 'dark' | 'l
             isOpen={openDrop === 'mood'}
             onToggle={() => toggleDrop('mood')}
             onSelect={v => { setFilterMood(v); setOpenDrop(null) }}
-            TEXT={TEXT} DIM={DIM} isLight={isLight}
-          />
-          <Dropdown
-            label="Format"
-            value={filterFormat}
-            options={['ALL', ...ALL_FORMATS]}
-            isOpen={openDrop === 'format'}
-            onToggle={() => toggleDrop('format')}
-            onSelect={v => { setFilterFormat(v); setOpenDrop(null) }}
             TEXT={TEXT} DIM={DIM} isLight={isLight}
           />
         </div>

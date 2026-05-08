@@ -19,7 +19,7 @@ function AppContent() {
   const [volume, setVolume] = useState(0.8)
   const [progress, setProgress] = useState(0)
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768)
-  const videoRef = useRef<HTMLVideoElement>(null)
+  const videoRef = useRef<HTMLVideoElement>(null!)
   const navigate = useNavigate()
   const location = useLocation()
   const [theme, setTheme] = useState<'dark' | 'light'>('light')
