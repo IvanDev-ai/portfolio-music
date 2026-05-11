@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react'
-import { HashRouter, Routes, Route, useNavigate } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom'
 import './index.css'
 import Nav from './components/Nav'
 import VideoHero from './components/VideoHero'
@@ -100,8 +100,8 @@ function AppContent() {
 
 export default function App() {
   return (
-    <HashRouter>
+    <BrowserRouter>
       <AppContent />
-    </HashRouter>
+    </BrowserRouter>
   )
 }

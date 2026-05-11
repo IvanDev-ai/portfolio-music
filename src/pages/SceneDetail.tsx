@@ -170,107 +170,99 @@ export default function SceneDetail() {
 
   // ── MOBILE ──────────────────────────────────────────────
   if (isMobile) {
-    return (
-      <div
-        ref={containerRef}
-        style={{
-          position: 'fixed', inset: 0,
-          background: '#000',
-          fontFamily: '"Inter", "Helvetica Neue", Helvetica, Arial, sans-serif',
-          display: 'flex', flexDirection: 'column'
-        }}
-        onClick={resetTimer}
-      >
-        {/* VIDEO */}
-        <video
+  return (
+    <div
+      ref={containerRef}
+      style={{
+        position: 'fixed', inset: 0,
+        background: '#000',
+        fontFamily: '"Inter", "Helvetica Neue", Helvetica, Arial, sans-serif',
+        display: 'flex', flexDirection: 'column',
+      }}
+      onClick={resetTimer}
+    >
+      {/* VIDEO — ocupa el tercio superior */}
+      <video
         ref={videoRef}
         key={scene.src}
         src={scene.src}
         autoPlay loop muted={muted} playsInline
         style={{
-          position: 'absolute',
-          top: '40%',
-          left: 0,
-          transform: 'translateY(-50%)',
           width: '100%',
-          height: isFullscreen ? '100%' : 'auto',
-          maxHeight: isFullscreen ? '100%' : '56vw',
+          height: isFullscreen ? '100vh' : '60vh',
           objectFit: 'cover',
+          flexShrink: 0,
           zIndex: 1,
         }}
       />
 
-        {/* OVERLAY sobre video en fullscreen */}
-        {isFullscreen && (
-          <div style={{
-            position: 'absolute', inset: 0,
-            background: 'linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 40%)',
-            pointerEvents: 'none',
-          }} />
-        )}
+      {/* OVERLAY fullscreen */}
+      {isFullscreen && (
+        <div style={{
+          position: 'absolute', inset: 0,
+          background: 'linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 40%)',
+          pointerEvents: 'none', zIndex: 2,
+        }} />
+      )}
 
-        {/* CONTROLES FULLSCREEN — sobre el video */}
-        {isFullscreen && (
-          <div style={{
-            ...hud,
-            position: 'absolute', inset: 0,
-            display: 'flex', flexDirection: 'column',
-            justifyContent: 'space-between',
-            padding: '20px',
-          }}>
-            {/* TOP */}
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <button
-                onClick={() => { document.exitFullscreen(); navigate('/cine') }}
-                style={{ color: dim, display: 'flex', alignItems: 'center', gap: '6px', fontSize: '12px', letterSpacing: '0.06em' }}
-              >
-                <BackIcon /> CINE
-              </button>
-              <div style={{ fontSize: '14px', fontWeight: 600, color: full }}>{scene.title}</div>
-              <div style={{ width: '60px' }} />
-            </div>
-
-            {/* BOTTOM */}
-            <div>
-              {/* PROGRESS */}
-              <div ref={progressBarRef} onClick={handleSeek}
-                style={{ width: '100%', height: '3px', background: 'rgba(255,255,255,0.2)', borderRadius: '2px', cursor: 'pointer', position: 'relative', marginBottom: '12px' }}
-              >
+      {/* CONTROLES FULLSCREEN */}
+      {isFullscreen && (
+        <div style={{
+          ...hud,
+          position: 'absolute', inset: 0, zIndex: 10,
+          display: 'flex', flexDirection: 'column',
+          justifyContent: 'space-between',
+          padding: '20px',
+        }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <button
+              onClick={() => { document.exitFullscreen(); navigate('/cine') }}
+              style={{ color: dim, display: 'flex', alignItems: 'center', gap: '6px', fontSize: '12px', letterSpacing: '0.06em' }}
+            >
+              <BackIcon /> CINE
+            </button>
+            <div style={{ fontSize: '14px', fontWeight: 600, color: full }}>{scene.title}</div>
+            <div style={{ width: '60px' }} />
+          </div>
+          <div>
+            <div ref={progressBarRef} onClick={handleSeek}
+              style={{ width: '100%', height: '20px', cursor: 'pointer', position: 'relative', display: 'flex', alignItems: 'center', marginBottom: '8px' }}
+            >
+              <div style={{ position: 'absolute', left: 0, right: 0, height: '3px', background: 'rgba(255,255,255,0.2)', borderRadius: '2px' }}>
                 <div style={{ position: 'absolute', top: 0, left: 0, height: '100%', width: `${progress * 100}%`, background: 'rgba(255,255,255,0.85)', borderRadius: '2px', transition: 'width 0.3s linear' }} />
               </div>
-
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <div style={{ display: 'flex', gap: '24px', alignItems: 'center' }}>
-                  <ControlBtn onClick={() => setPaused(p => !p)}>
-                    {paused ? <PlayIcon /> : <PauseIcon />}
-                  </ControlBtn>
-                  <ControlBtn onClick={() => { if (videoRef.current) videoRef.current.muted = !muted; setMuted(m => !m) }}>
-                    {muted ? <MuteIcon /> : <UnmuteIcon />}
-                  </ControlBtn>
-                  <span style={{ fontSize: '11px', color: dim, fontVariantNumeric: 'tabular-nums' }}>
-                    {currentTime} / {duration}
-                  </span>
-                </div>
-                <ControlBtn onClick={toggleFullscreen}>
-                  <ExitFullscreenIcon />
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <div style={{ display: 'flex', gap: '24px', alignItems: 'center' }}>
+                <ControlBtn onClick={() => setPaused(p => !p)}>
+                  {paused ? <PlayIcon /> : <PauseIcon />}
                 </ControlBtn>
+                <ControlBtn onClick={() => { if (videoRef.current) videoRef.current.muted = !muted; setMuted(m => !m) }}>
+                  {muted ? <MuteIcon /> : <UnmuteIcon />}
+                </ControlBtn>
+                <span style={{ fontSize: '11px', color: dim, fontVariantNumeric: 'tabular-nums' }}>
+                  {currentTime} / {duration}
+                </span>
               </div>
+              <ControlBtn onClick={toggleFullscreen}><ExitFullscreenIcon /></ControlBtn>
             </div>
           </div>
-        )}
+        </div>
+      )}
 
-        {/* CONTROLES — pegados abajo */}
+      {/* CONTROLES NORMALES — debajo del video, no encima */}
       {!isFullscreen && (
         <div style={{
-          position: 'absolute',
-          bottom: '20%', left: 0, right: 0,
-          zIndex: 10,
-          background: 'linear-gradient(transparent, rgba(0,0,0,0.95) 40%)',
-          padding: '40px 20px 48px',
-          display: 'flex', flexDirection: 'column', gap: '0',
+          flex: 1,
+          background: '#0a0a0a',
+          display: 'flex', flexDirection: 'column',
+          padding: '24px 20px 32px',
+          overflowY: 'auto',
+          zIndex: 2,
         }}>
-          {/* TITLE */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '16px' }}>
+
+          {/* TITLE + BACK */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '24px' }}>
             <button onClick={() => navigate('/cine')} style={{ color: dim, display: 'flex', alignItems: 'center', flexShrink: 0 }}>
               <BackIcon />
             </button>
@@ -310,7 +302,7 @@ export default function SceneDetail() {
           <div style={{
             display: 'flex', justifyContent: 'space-between',
             fontSize: '10px', color: dim,
-            marginBottom: '20px', fontVariantNumeric: 'tabular-nums',
+            marginBottom: '28px', fontVariantNumeric: 'tabular-nums',
           }}>
             <span>{currentTime}</span>
             <span>{duration}</span>
@@ -319,7 +311,8 @@ export default function SceneDetail() {
           {/* BOTONES */}
           <div style={{
             display: 'flex', justifyContent: 'space-between',
-            alignItems: 'center', padding: '0 8px', marginBottom: '24px',
+            alignItems: 'center', padding: '0 8px',
+            marginBottom: '32px',
           }}>
             <ControlBtn onClick={() => { if (videoRef.current) videoRef.current.muted = !muted; setMuted(m => !m) }}>
               {muted ? <MuteIcon /> : <UnmuteIcon />}
@@ -347,9 +340,9 @@ export default function SceneDetail() {
           </button>
         </div>
       )}
-      </div>
-    )
-  }
+    </div>
+  )
+}
 
   // ── DESKTOP ──────────────────────────────────────────────
   return (

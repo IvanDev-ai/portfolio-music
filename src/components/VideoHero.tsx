@@ -29,6 +29,7 @@ export default function VideoHero({ videoRef, muted, paused, onProgressChange, p
   const hideTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
   const listRef = useRef<HTMLDivElement>(null)
   const progressBarRef = useRef<HTMLDivElement>(null)
+  const [progressHovered, setProgressHovered] = useState(false)
 
   const project = PROJECTS[current]
   const dim = 'rgba(255,255,255,0.45)'
@@ -284,18 +285,24 @@ export default function VideoHero({ videoRef, muted, paused, onProgressChange, p
         <div
           ref={progressBarRef}
           onClick={handleSeek}
+          onMouseEnter={() => setProgressHovered(true)}
+          onMouseLeave={() => setProgressHovered(false)}
           style={{
-            width: '500px', height: '2px',
+            width: '500px',
+            height: progressHovered ? '6px' : '2px',
             marginBottom: '20px',
             background: 'rgba(255,255,255,0.2)',
-            cursor: 'pointer', position: 'relative', borderRadius: '2px',
+            cursor: 'pointer',
+            position: 'relative',
+            borderRadius: '3px',
+            transition: 'height 0.15s ease',
           }}
         >
           <div style={{
             position: 'absolute', top: 0, left: 0,
             height: '100%', width: `${progress * 100}%`,
             background: 'rgba(255,255,255,0.8)',
-            transition: 'width 0.4s linear', borderRadius: '2px',
+            transition: 'width 0.4s linear', borderRadius: '3px',
           }} />
         </div>
 
