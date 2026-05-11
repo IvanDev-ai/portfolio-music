@@ -89,9 +89,7 @@ export default function VideoHero({ videoRef, muted, paused, onProgressChange, p
 
     const handleTouchEnd = (e: TouchEvent) => {
       const diff = touchStartY - e.changedTouches[0].clientY
-      // diff > 30 = swipe hacia abajo
-      // current === último proyecto
-      if (diff > 30 && current === PROJECTS.length - 1) {
+      if (diff > 50 && current === PROJECTS.length - 1) {
         onEnd?.()
       }
     }
@@ -104,7 +102,7 @@ export default function VideoHero({ videoRef, muted, paused, onProgressChange, p
       container.removeEventListener('touchstart', handleTouchStart)
       container.removeEventListener('touchend', handleTouchEnd)
     }
-  }, [isMobile, onProgressChange, onEnd, current])
+  }, [isMobile, onProgressChange, onEnd, current]) 
 
   const handleSeek = (e: React.MouseEvent<HTMLDivElement>) => {
     const bar = progressBarRef.current
@@ -140,7 +138,7 @@ export default function VideoHero({ videoRef, muted, paused, onProgressChange, p
   }
 
   // ── MOBILE ──────────────────────────────────────────────
-    // El bloque if (isMobile) — idéntico al tuyo que funcionaba:
+    // El bloque if (isMobile) 
   if (isMobile) {
     return (
       <div style={{ position: 'fixed', inset: 0, zIndex: 0 }}>

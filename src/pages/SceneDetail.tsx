@@ -189,7 +189,7 @@ export default function SceneDetail() {
         autoPlay loop muted={muted} playsInline
         style={{
           width: '100%',
-          height: isFullscreen ? '100vh' : '60vh',
+          height: isFullscreen ? '100vh' : '50vh',
           objectFit: 'cover',
           flexShrink: 0,
           zIndex: 1,
