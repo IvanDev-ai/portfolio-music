@@ -165,7 +165,6 @@ export default function VideoHero({ onMuteToggle,videoRef, muted, paused, onProg
       <div style={{ position: 'fixed', inset: 0, zIndex: 0 }}>
         <video
           ref={videoRef}
-          key={project.src}
           src={project.src}
           autoPlay
           loop
