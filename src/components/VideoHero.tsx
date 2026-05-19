@@ -3,6 +3,7 @@ import { SCENES } from '../data/scenes'
 
 const PROJECTS = SCENES
   .filter(s => s.featured)
+  .reverse()
   .map(s => ({
     id: s.id,
     title: s.title.toUpperCase(),

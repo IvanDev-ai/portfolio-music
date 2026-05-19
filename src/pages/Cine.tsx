@@ -2,7 +2,9 @@ import { useState, useRef, useEffect, useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { SCENES, SCENE_CATEGORIES, SCENE_MOODS, SIDEBAR_ITEMS } from '../data/scenes'
 import { useDragScroll } from '../hooks/useDragScroll'
-const FEATURED = SCENES.filter(s => s.featured)
+const FEATURED = SCENES
+  .filter(s => s.featured)
+  .reverse();
 
 export default function Cine({ theme = 'light' }: { theme?: 'dark' | 'light' }) {
   const navigate = useNavigate()

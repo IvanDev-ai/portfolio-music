@@ -13,18 +13,6 @@ export const SCENES = [
   },
   { 
     id: 2, 
-    title: 'Euphoria Scene Remake', 
-    category: 'Series', 
-    mood: 'Emotional', 
-    type: 'Labrinth-style', 
-    year: '2025', 
-    src: 'https://cdn.hillsmckay.art/vids/vid3.mp4', 
-    img: 'https://cdn.hillsmckay.art/img/vid2.webp', 
-    featured: false, 
-    recent: false 
-  },
-  { 
-    id: 3, 
     title: 'Euphoria Song', 
     category: 'Series', 
     mood: 'Dramatic', 
@@ -36,19 +24,19 @@ export const SCENES = [
     recent: false 
   },
   { 
-    id: 4, 
+    id: 3, 
     title: 'Euphoria Scene Remake', 
     category: 'Series', 
-    mood: 'Cinematic', 
-    type: 'Orchestral', 
-    year: '2026', 
-    src: 'https://cdn.hillsmckay.art/vids/vid4.mp4', 
-    img: 'https://cdn.hillsmckay.art/img/vid3.webp', 
-    featured: true, 
-    recent: true 
+    mood: 'Emotional', 
+    type: 'Labrinth-style', 
+    year: '2025', 
+    src: 'https://cdn.hillsmckay.art/vids/vid3.mp4', 
+    img: 'https://cdn.hillsmckay.art/img/vid2.webp', 
+    featured: false, 
+    recent: false 
   },
   { 
-    id: 5, 
+    id: 4, 
     title: 'Euphoria Scene Remake', 
     category: 'Series', 
     mood: 'Euphoric', 
@@ -56,6 +44,18 @@ export const SCENES = [
     year: '2025', 
     src: 'https://cdn.hillsmckay.art/vids/vid5.mp4', 
     img: 'https://cdn.hillsmckay.art/img/vid1.webp', 
+    featured: true, 
+    recent: true 
+  },
+  { 
+    id: 5, 
+    title: 'Euphoria Scene Remake', 
+    category: 'Series', 
+    mood: 'Cinematic', 
+    type: 'Orchestral', 
+    year: '2026', 
+    src: 'https://cdn.hillsmckay.art/vids/vid4.mp4', 
+    img: 'https://cdn.hillsmckay.art/img/vid3.webp', 
     featured: true, 
     recent: true 
   },
