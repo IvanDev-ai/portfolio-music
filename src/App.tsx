@@ -14,7 +14,7 @@ import WhoAmI from './pages/WhoAmI'
 import Contacto from './pages/Contacto'
 
 function AppContent() {
-  const [muted, setMuted] = useState(true)
+  const [muted, setMuted] = useState(false)
   const [paused, setPaused] = useState(false)
   const [volume, setVolume] = useState(0.8)
   const [progress, setProgress] = useState(0)

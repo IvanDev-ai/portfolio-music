@@ -146,7 +146,7 @@ export default function VideoHero({ videoRef, muted, paused, onProgressChange, p
           ref={videoRef}
           key={project.src}
           src={project.src}
-          autoPlay loop playsInline
+          autoPlay loop muted={muted} playsInline
           onTimeUpdate={() => {
             const video = videoRef.current
             if (video && video.duration && !isNaN(video.duration)) {
