@@ -15,7 +15,7 @@ import Contacto from './pages/Contacto'
 
 function AppContent() {
   const [muted, setMuted] = useState(false)
-  const [paused, setPaused] = useState(true)
+  const [paused, setPaused] = useState(false)
   const [volume, setVolume] = useState(0.8)
   const [progress, setProgress] = useState(0)
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768)
