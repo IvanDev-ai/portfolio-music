@@ -97,15 +97,9 @@ export default function VideoHero({ onMuteToggle,videoRef, muted, paused, onProg
 
     const handleTouchEnd = (e: TouchEvent) => {
       const diff = touchStartY - e.changedTouches[0].clientY
-
       if (diff > 50 && current === PROJECTS.length - 1) {
         onEnd?.()
       }
-
-      // reintento inmediato tras el gesto
-      requestAnimationFrame(() => {
-        playActiveVideo()
-      })
     }
 
     container.addEventListener('touchstart', handleTouchStart, { passive: true })
@@ -132,28 +126,20 @@ export default function VideoHero({ onMuteToggle,videoRef, muted, paused, onProg
     setCurrent(index)
     onProgressChange(0)
   }
-
-  const playActiveVideo = useCallback(() => {
+  useEffect(() => {
     const video = videoRef.current
     if (!video) return
 
-    video.muted = muted
-
-    if (paused) {
-      video.pause()
-      return
+    const playVideo = () => {
+      video.play().catch(err => {
+        console.log('Autoplay prevented:', err)
+      })
     }
 
-    video.play().catch(err => {
-      console.log('Play blocked:', err)
-    })
-  }, [muted, paused, videoRef])
+    const timeout = setTimeout(playVideo, 100)
 
-  useEffect(() => {
-    playActiveVideo()
-  }, [current, playActiveVideo])
-
-
+    return () => clearTimeout(timeout)
+  }, [current])
   const prev = () => goTo((current - 1 + PROJECTS.length) % PROJECTS.length)
   const next = () => goTo((current + 1) % PROJECTS.length)
 
@@ -291,12 +277,8 @@ export default function VideoHero({ onMuteToggle,videoRef, muted, paused, onProg
               {/* BOTÓN MUTE A LA DERECHA */}
               <button
                 onClick={(e) => {
-                  e.stopPropagation()
-                  onMuteToggle?.()
-
-                  requestAnimationFrame(() => {
-                    playActiveVideo()
-                  })
+                  e.stopPropagation();
+                  onMuteToggle?.();
                 }}
                 style={{
                   color: dimColor,
