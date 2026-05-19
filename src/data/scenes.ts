@@ -13,18 +13,6 @@ export const SCENES = [
   },
   { 
     id: 2, 
-    title: 'Euphoria Song', 
-    category: 'Series', 
-    mood: 'Dramatic', 
-    type: 'Orchestral · Labrinth-style', 
-    year: '2025', 
-    src: 'https://cdn.hillsmckay.art/vids/vid2.mp4', 
-    img: 'https://cdn.hillsmckay.art/img/vid6.webp', 
-    featured: false, 
-    recent: false 
-  },
-  { 
-    id: 3, 
     title: 'Euphoria Scene Remake', 
     category: 'Series', 
     mood: 'Emotional', 
@@ -32,6 +20,18 @@ export const SCENES = [
     year: '2025', 
     src: 'https://cdn.hillsmckay.art/vids/vid3.mp4', 
     img: 'https://cdn.hillsmckay.art/img/vid2.webp', 
+    featured: false, 
+    recent: false 
+  },
+  { 
+    id: 3, 
+    title: 'Euphoria Song', 
+    category: 'Series', 
+    mood: 'Dramatic', 
+    type: 'Orchestral · Labrinth-style', 
+    year: '2025', 
+    src: 'https://cdn.hillsmckay.art/vids/vid2.mp4', 
+    img: 'https://cdn.hillsmckay.art/img/vid6.webp', 
     featured: false, 
     recent: false 
   },

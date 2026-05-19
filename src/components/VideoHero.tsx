@@ -168,7 +168,7 @@ export default function VideoHero({ onMuteToggle,videoRef, muted, paused, onProg
           src={project.src}
           autoPlay
           loop
-          muted={muted}
+          muted={muted} 
           playsInline
           onTimeUpdate={() => {
             const video = videoRef.current
