@@ -13,6 +13,7 @@ const PROJECTS = SCENES
   }))
 
 interface Props {
+  onMuteToggle: () => void
   videoRef: React.RefObject<HTMLVideoElement>
   muted: boolean
   paused: boolean
@@ -22,7 +23,7 @@ interface Props {
   onEnd?: () => void
 }
 
-export default function VideoHero({ videoRef, muted, paused, onProgressChange, progress, isMobile, onEnd }: Props) {
+export default function VideoHero({ onMuteToggle,videoRef, muted, paused, onProgressChange, progress, isMobile, onEnd }: Props) {
   const [current, setCurrent] = useState(0)
   const [hudVisible, setHudVisible] = useState(true)
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
@@ -34,7 +35,7 @@ export default function VideoHero({ videoRef, muted, paused, onProgressChange, p
   const project = PROJECTS[current]
   const dim = 'rgba(255,255,255,0.45)'
   const full = 'rgba(255,255,255,0.85)'
-
+  const dimColor = 'rgba(255,255,255,0.45)'
 
   useEffect(() => {
     if (videoRef.current) videoRef.current.muted = muted
@@ -163,7 +164,7 @@ export default function VideoHero({ videoRef, muted, paused, onProgressChange, p
           background: 'linear-gradient(to right, rgba(0,0,0,0.55) 0%, transparent 60%)',
           pointerEvents: 'none',
         }} />
-
+        
         {/* SCROLL HINT — derecha, centrado verticalmente */}
         <div style={{
           position: 'absolute',
@@ -178,16 +179,19 @@ export default function VideoHero({ videoRef, muted, paused, onProgressChange, p
           pointerEvents: 'none',
           animation: 'fadeUpDown 2s ease-in-out infinite',
         }}>
+          
           <span style={{
-            fontSize: '10px',
+            fontSize: '15px',
             letterSpacing: '0.18em',
             color: 'rgba(255, 255, 255, 0.64)',
             writingMode: 'vertical-rl',
           }}>
             SCROLL
           </span>
-          <span style={{ fontSize: '10px', color: 'rgba(255,255,255,0.25)' }}>↓</span>
+          <span style={{ fontSize: '15px', color: 'rgba(255,255,255,0.25)' }}>↓</span>
+          
         </div>
+        
 
         <div
           ref={listRef}
@@ -200,32 +204,80 @@ export default function VideoHero({ videoRef, muted, paused, onProgressChange, p
           } as React.CSSProperties}
         >
           {PROJECTS.map((p, i) => (
-            <div
-              key={p.id}
-              data-index={i}
-              onClick={() => goTo(i)}
-              style={{
-                height: '100vh', scrollSnapAlign: 'start',
-                display: 'flex', flexDirection: 'column',
-                justifyContent: 'flex-end', padding: '0 20px 80px',
-              }}
-            >
+          <div
+            key={p.id}
+            data-index={i}
+            onClick={() => goTo(i)}
+            style={{
+              height: '100vh',
+              scrollSnapAlign: 'start',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'flex-end',
+              padding: '0 20px 80px',
+              position: 'relative',           // ← importante
+            }}
+          >
+
+            {/* INFO + BOTÓN EN FILA */}
+            <div style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'flex-end',
+              width: '100%',
+            }}>
+
+              {/* DIV 1 — Información a la izquierda */}
               <div style={{ opacity: i === current ? 1 : 0.35, transition: 'opacity 0.4s' }}>
                 <div style={{
-                  fontSize: '10px', letterSpacing: '0.15em',
-                  color: 'rgba(255,255,255,0.5)', marginBottom: '4px',
+                  fontSize: '10px', 
+                  letterSpacing: '0.15em',
+                  color: 'rgba(255,255,255,0.5)', 
+                  marginBottom: '4px',
                 }}>
                   {p.type} · {p.year}
                 </div>
                 <div style={{
-                  fontSize: '18px', fontWeight: 500,
-                  letterSpacing: '0.02em', lineHeight: 1.2,
+                  fontSize: '18px', 
+                  fontWeight: 500,
+                  letterSpacing: '0.02em', 
+                  lineHeight: 1.2,
                   color: i === current ? 'rgba(255,255,255,0.95)' : 'rgba(255,255,255,0.5)',
                 }}>
                   {p.title}
                 </div>
               </div>
+
+              {/* BOTÓN MUTE A LA DERECHA */}
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onMuteToggle?.();
+                }}
+                style={{
+                  color: dimColor,
+                  background: 'transparent',
+                  border: 'none',
+                  padding: '10px',
+                  paddingTop: '10px',
+                  cursor: 'pointer',
+                  flexShrink: 0,
+                  transition: 'all 0.2s ease',
+                }}
+              >
+                {muted ? (
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M16.5 12A4.5 4.5 0 0014 7.97v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06a8.99 8.99 0 003.69-2L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/>
+                  </svg>
+                ) : (
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0014 7.97v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/>
+                  </svg>
+                )}
+              </button>
+
             </div>
+          </div>
           ))}
         </div>
       </div>

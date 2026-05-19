@@ -136,7 +136,7 @@ export default function Nav({
           }}>
             HILLS-MCKAY
           </span>
-
+          
           {/* MENU BUTTON — derecha */}
           <button onClick={() => setMenuOpen(o => !o)} style={{
             display: 'flex', flexDirection: 'column',

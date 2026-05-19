@@ -76,6 +76,7 @@ function AppContent() {
       <Routes>
         <Route path="/" element={
           <VideoHero
+            onMuteToggle={toggleMute}
             videoRef={videoRef}
             muted={muted}
             paused={paused}
