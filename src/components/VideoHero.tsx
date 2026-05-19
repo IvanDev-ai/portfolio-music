@@ -42,9 +42,15 @@ export default function VideoHero({ onMuteToggle,videoRef, muted, paused, onProg
   }, [muted, videoRef])
 
   useEffect(() => {
-    if (!videoRef.current) return
-    paused ? videoRef.current.pause() : videoRef.current.play().catch(() => {})
-  }, [paused, videoRef])
+    const video = videoRef.current
+    if (!video) return
+
+    if (paused) {
+      video.pause()
+    } else {
+      video.play().catch(() => {})
+    }
+  }, [paused, current])
 
   const resetTimer = useCallback(() => {
     setHudVisible(true)
@@ -119,7 +125,20 @@ export default function VideoHero({ onMuteToggle,videoRef, muted, paused, onProg
     setCurrent(index)
     onProgressChange(0)
   }
+  useEffect(() => {
+    const video = videoRef.current
+    if (!video) return
 
+    const playVideo = () => {
+      video.play().catch(err => {
+        console.log('Autoplay prevented:', err)
+      })
+    }
+
+    const timeout = setTimeout(playVideo, 100)
+
+    return () => clearTimeout(timeout)
+  }, [current])
   const prev = () => goTo((current - 1 + PROJECTS.length) % PROJECTS.length)
   const next = () => goTo((current + 1) % PROJECTS.length)
 
@@ -147,7 +166,10 @@ export default function VideoHero({ onMuteToggle,videoRef, muted, paused, onProg
           ref={videoRef}
           key={project.src}
           src={project.src}
-          autoPlay loop muted={muted} playsInline
+          autoPlay
+          loop
+          muted={muted}
+          playsInline
           onTimeUpdate={() => {
             const video = videoRef.current
             if (video && video.duration && !isNaN(video.duration)) {
@@ -155,8 +177,11 @@ export default function VideoHero({ onMuteToggle,videoRef, muted, paused, onProg
             }
           }}
           style={{
-            position: 'absolute', inset: 0,
-            width: '100%', height: '100%', objectFit: 'cover',
+            position: 'absolute', 
+            inset: 0,
+            width: '100%', 
+            height: '100%', 
+            objectFit: 'cover'
           }}
         />
         <div style={{
